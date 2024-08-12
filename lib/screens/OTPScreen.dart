@@ -6,105 +6,101 @@ class OtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.grey[900], // Background color of the screen
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(screenSize.width * 0.04),
           child: Container(
-            padding: EdgeInsets.all(24),
+            padding: EdgeInsets.all(screenSize.width * 0.06),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(screenSize.width * 0.05),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Top Text
-                // Text(
-                //   'Login',
-                //   style: TextStyle(
-                //     fontSize: 20,
-                //     color: Colors.black,
-                //     fontWeight: FontWeight.bold,
-                //   ),
-                // ),
-                SizedBox(height: 20),
+                SizedBox(height: screenSize.height * 0.02),
                 // Icon
                 Container(
-                  height: 149,
-                  width: 149,
+                  height: screenSize.height * 0.18,
+                  width: screenSize.width * 0.35,
                   child: Icon(
                     Icons.mark_email_read,
                     color: Color(0xff6B3C8A),
-                    size: 80,
+                    size: screenSize.width * 0.2,
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: screenSize.height * 0.03),
                 // Activation Code Text
                 Text(
                   'Activation Code',
                   style: TextStyle(
-                    fontSize: 26,
+                    fontSize: screenSize.width * 0.065,
                     fontWeight: FontWeight.bold,
                     color: Color(0xff6B3C8A),
                   ),
                 ),
-                SizedBox(height: 60),
+                SizedBox(height: screenSize.height * 0.07),
                 // Instruction Text
                 Text(
                   'Please enter the verification code sent to your phone',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: screenSize.width * 0.04,
                     color: Colors.orange,
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: screenSize.height * 0.03),
                 // OTP Input Fields
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _buildOtpBox('5'),
-                    _buildOtpBox('8'),
-                    _buildOtpBox('6'),
-                    _buildOtpBox('8'),
+                    _buildOtpBox('5', screenSize),
+                    _buildOtpBox('8', screenSize),
+                    _buildOtpBox('6', screenSize),
+                    _buildOtpBox('8', screenSize),
                   ],
                 ),
-                SizedBox(height: 50),
+                SizedBox(height: screenSize.height * 0.06),
                 // Resend Code Text
                 Text(
                   'Resend verification code',
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: screenSize.width * 0.035,
                     color: Color(0xff6B3C8A),
                     decoration: TextDecoration.underline,
                   ),
                 ),
-                SizedBox(height: 40),
+                SizedBox(height: screenSize.height * 0.05),
                 // Verification Button
                 SizedBox(
-
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const RoleSelectionScreen(),
                       ));
-
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.orange,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(screenSize.width * 0.03),
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 15,horizontal: 50),
+                      padding: EdgeInsets.symmetric(
+                        vertical: screenSize.height * 0.02,
+                        horizontal: screenSize.width * 0.2,
+                      ),
                     ),
                     child: Text(
                       'verification',
-                      style: TextStyle(fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                      style: TextStyle(
+                        fontSize: screenSize.width * 0.045,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -116,19 +112,19 @@ class OtpScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildOtpBox(String digit) {
+  Widget _buildOtpBox(String digit, Size screenSize) {
     return Container(
-      width: 50,
-      height: 50,
+      width: screenSize.width * 0.12,
+      height: screenSize.height * 0.07,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey.shade300),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(screenSize.width * 0.03),
       ),
       child: Text(
         digit,
         style: TextStyle(
-          fontSize: 24,
+          fontSize: screenSize.width * 0.06,
           fontWeight: FontWeight.bold,
         ),
       ),

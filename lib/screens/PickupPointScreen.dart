@@ -590,25 +590,31 @@ class ShowPopUp extends StatelessWidget {
   }
 
   Widget _buildTimeRow(String day, String time) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: Row(
-        children: [
-          Text(
-            day,
-            style: TextStyle(fontSize: 16),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final screenWidth = constraints.maxWidth;
+        final paddingVertical = screenWidth * 0.01; // Adjust padding based on screen width
+        final fontSize = screenWidth * 0.06; // Adjust font size based on screen width
+
+        return Padding(
+          padding: EdgeInsets.symmetric(vertical: paddingVertical),
+          child: Row(
+            children: [
+              Text(
+                day,
+                style: TextStyle(fontSize: fontSize),
+              ),
+              Spacer(),
+              Text(
+                time,
+                style: TextStyle(fontSize: fontSize),
+              ),
+            ],
           ),
-          Spacer(),
-          Text(
-            time,
-            style: TextStyle(fontSize: 16),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
+
 }
 
-void main() {
-  runApp(const PickupPointScreen());
-}

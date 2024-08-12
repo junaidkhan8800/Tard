@@ -6,77 +6,94 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
+
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.symmetric(
+            horizontal: screenSize.width * 0.05,
+            vertical: screenSize.height * 0.02,
+          ),
           child: Column(
             children: [
               Expanded(
                 child: Column(
                   children: [
                     // Welcome text
-                    const Align(
+                    Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        'welcome',
+                        'Welcome',
                         style: TextStyle(
                           color: Colors.orange,
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold
+                          fontSize: screenSize.width * 0.06, // Adaptive font size
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: screenSize.height * 0.01),
                     // Title
-                    const Text(
+                    Text(
                       'TO TARD',
                       style: TextStyle(
                         color: Color(0xff6B3C8A),
                         fontWeight: FontWeight.bold,
-                        fontSize: 35,
+                        fontSize: screenSize.width * 0.09, // Adaptive font size
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: screenSize.height * 0.03),
                     // Image or Icon
                     Container(
-                      height: 150,
-                      child: Image.asset("assets/images/login_header.png",width: 130,height: 260,
-                      fit: BoxFit.fill,), // Add your image asset here
+                      height: screenSize.height * 0.2,
+                      child: Image.asset(
+                        "assets/images/login_header.png",
+                        width: screenSize.width * 0.35,
+                        fit: BoxFit.fill,
+                      ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: screenSize.height * 0.03),
                     // Login by mobile number text
                     RichText(
                       text: TextSpan(
                         text: 'Login By ',
-                        style: TextStyle(color: Color(0xff6B3C8A), fontSize: 26,fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          color: Color(0xff6B3C8A),
+                          fontSize: screenSize.width * 0.065, // Adaptive font size
+                          fontWeight: FontWeight.bold,
+                        ),
                         children: <TextSpan>[
                           TextSpan(
                             text: 'mobile number',
                             style: TextStyle(
-                                color: Colors.orange, fontWeight: FontWeight.bold),
+                              color: Colors.orange,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: screenSize.height * 0.03),
                     // Mobile number input field
                     Row(
                       children: [
                         Expanded(
                           child: TextFormField(
                             decoration: InputDecoration(
-                              hintText: 'Enter Mobile Number', // 'Enter mobile number' in Arabic
+                              hintText: 'Enter Mobile Number',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(width: 8),
+                        SizedBox(width: screenSize.width * 0.02),
                         // Country code
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 17, vertical: 17),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: screenSize.width * 0.045,
+                            vertical: screenSize.height * 0.022,
+                          ),
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.grey),
                             borderRadius: BorderRadius.circular(10.0),
@@ -85,55 +102,67 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: screenSize.height * 0.03),
                     // Login button
-                    SizedBox(
-
+                    Center(
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => OtpScreen(),
+                            builder: (context) => const OtpScreen(),
                           ));
-
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xff6B3C8A),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          padding: EdgeInsets.symmetric(vertical: 12,horizontal: 60),
+                          padding: EdgeInsets.symmetric(
+                            vertical: screenSize.height * 0.015,
+                            horizontal: screenSize.width * 0.2,
+                          ),
                         ),
                         child: Text(
-                          'Login', // 'Login' in Arabic
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: Colors.white),
+                          'Login',
+                          style: TextStyle(
+                            fontSize: screenSize.width * 0.04,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 120),
+                    SizedBox(height: screenSize.height * 0.15),
                     // Problem logging in text
                     RichText(
                       text: TextSpan(
                         text: 'If you have a problem logging in...',
-                        style: TextStyle(color: Colors.black, fontSize: 14),
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: screenSize.width * 0.035,
+                        ),
                         children: <TextSpan>[
                           TextSpan(
                             text: ' click here',
                             style: TextStyle(
-                                color: Colors.orange, fontWeight: FontWeight.bold),
+                              color: Colors.orange,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: screenSize.height * 0.02),
                   ],
                 ),
               ),
-              Text(
-                'SAUD MADE',
-                style: TextStyle(
-                  color: Color(0xff6B3C8A),
-                  fontSize: 21,
-                  fontWeight: FontWeight.bold,
+              Center(
+                child: Text(
+                  'SAUD MADE',
+                  style: TextStyle(
+                    color: Color(0xff6B3C8A),
+                    fontSize: screenSize.width * 0.055,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],

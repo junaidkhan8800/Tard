@@ -50,55 +50,67 @@ class OnboardingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get screen size
+    final Size screenSize = MediaQuery.of(context).size;
+
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: EdgeInsets.symmetric(horizontal: screenSize.width * 0.05),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 150),
-          // Image.asset(imageAsset, height: 170,width: 175,), // Replace with your images
+          Spacer(flex: 2),
           Align(
-              alignment: Alignment.center,
-              child: Image.asset(
-                imageAsset,
-                height: 300,
-                width: 300,
-              )),
-          // Replace with your images
-          SizedBox(height: 30),
+            alignment: Alignment.center,
+            child: Image.asset(
+              imageAsset,
+              height: screenSize.height * 0.4,
+              width: screenSize.width * 0.8,
+              fit: BoxFit.contain,
+            ),
+          ),
+          Spacer(flex: 1),
           Text(
             title,
             textAlign: TextAlign.left,
             style: TextStyle(
-              fontSize: 30,
+              fontSize: screenSize.width * 0.08, // Scales with screen width
               fontWeight: FontWeight.bold,
               color: Color(0xffED672A),
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: screenSize.height * 0.02),
           Align(
             alignment: Alignment.centerRight,
             child: Text(
               description,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 35, color: Color(0xff492581)),
+              style: TextStyle(
+                fontSize: screenSize.width * 0.07, // Scales with screen width
+                color: Color(0xff492581),
+              ),
             ),
           ),
-          SizedBox(height: 120),
+          Spacer(flex: 2),
           Align(
             alignment: Alignment.center,
             child: Padding(
-              padding: const EdgeInsets.only(top: 20.0),
+              padding: EdgeInsets.only(top: screenSize.height * 0.02),
               child: TextButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => LoginScreen(),
                   ));
                 },
-                child: Text('Skip'),
+                child: Text(
+                  'Skip',
+                  style: TextStyle(
+                    fontSize: screenSize.width * 0.05, // Scales with screen width
+                  ),
+                ),
               ),
             ),
           ),
+          Spacer(flex: 1),
         ],
       ),
     );

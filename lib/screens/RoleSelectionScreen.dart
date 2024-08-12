@@ -4,15 +4,16 @@ import 'package:tard/screens/HomePage.dart';
 class RoleSelectionScreen extends StatelessWidget {
   const RoleSelectionScreen({super.key});
 
-  BuildContext? get context => null;
-
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
+    final double paddingValue = screenSize.width * 0.04;
+
     return SafeArea(
       child: Scaffold(
         body: Center(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(paddingValue),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -23,20 +24,20 @@ class RoleSelectionScreen extends StatelessWidget {
                     'welcome',
                     style: TextStyle(
                       color: Colors.orange,
-                      fontSize: 25,
+                      fontSize: screenSize.width * 0.06,
                     ),
                   ),
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: screenSize.height * 0.01),
                 // User's name
                 Text(
                   'Abdullah alshehri', // Replace with dynamic name if needed
                   style: TextStyle(
                     color: Color(0xff6B3C8A),
-                    fontSize: 28,
+                    fontSize: screenSize.width * 0.07,
                   ),
                 ),
-                SizedBox(height: 100),
+                SizedBox(height: screenSize.height * 0.1),
                 // Log in as text
                 Align(
                   alignment: Alignment.topLeft,
@@ -44,74 +45,86 @@ class RoleSelectionScreen extends StatelessWidget {
                     'Log in as',
                     style: TextStyle(
                       color: Colors.grey,
-                      fontSize: 25,
+                      fontSize: screenSize.width * 0.06,
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: screenSize.height * 0.02),
                 // Role buttons
-                GridView.count(
-                  shrinkWrap: true,
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 16,
-                  crossAxisSpacing: 16,
-                  children: [
-
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(
+                Expanded(
+                  child: GridView.count(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: screenSize.height * 0.02,
+                    crossAxisSpacing: screenSize.width * 0.04,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) => const HomePage(),
-                            ));
-                      },
-                      child: _buildRoleCard(
-                          'customer', Icons.person, Colors.purple,
-                          Colors.white),
-                    ),
-
-
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => HomePage(),
-                            ));
-                      },
-                      child: _buildRoleCard(
-                          'Delivery', Icons.local_shipping, Colors.purple,
-                          Colors.white),
-                    ),
-
-
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const HomePage(),
-                              ));
+                            ),
+                          );
                         },
                         child: _buildRoleCard(
-                            'store', Icons.store, Colors.purple, Colors.white),
-                    ),
-
-
-                    GestureDetector(
+                          'customer',
+                          Icons.person,
+                          Colors.purple,
+                          Colors.white,
+                          screenSize,
+                        ),
+                      ),
+                      GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const HomePage(),
-                              ));
+                            MaterialPageRoute(
+                              builder: (context) => const HomePage(),
+                            ),
+                          );
                         },
-                        child: _buildRoleCard('warehouse', Icons.warehouse, Colors.purple,
-                            Colors.white),
-                    )
-
-
-
-
-                  ],
+                        child: _buildRoleCard(
+                          'Delivery',
+                          Icons.local_shipping,
+                          Colors.purple,
+                          Colors.white,
+                          screenSize,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const HomePage(),
+                            ),
+                          );
+                        },
+                        child: _buildRoleCard(
+                          'store',
+                          Icons.store,
+                          Colors.purple,
+                          Colors.white,
+                          screenSize,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const HomePage(),
+                            ),
+                          );
+                        },
+                        child: _buildRoleCard(
+                          'warehouse',
+                          Icons.warehouse,
+                          Colors.purple,
+                          Colors.white,
+                          screenSize,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: screenSize.height * 0.02),
                 // Help text
                 Align(
                   alignment: Alignment.centerLeft,
@@ -119,17 +132,17 @@ class RoleSelectionScreen extends StatelessWidget {
                     'Help...?',
                     style: TextStyle(
                       color: Colors.orange,
-                      fontSize: 26,
+                      fontSize: screenSize.width * 0.065,
                     ),
                   ),
                 ),
-                Spacer(),
+                SizedBox(height: screenSize.height * 0.02),
                 // Footer text
                 Text(
                   'SAUD MADE',
                   style: TextStyle(
                     color: Colors.purple,
-                    fontSize: 16,
+                    fontSize: screenSize.width * 0.045,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -142,11 +155,11 @@ class RoleSelectionScreen extends StatelessWidget {
   }
 
   Widget _buildRoleCard(String role, IconData icon, Color iconColor,
-      Color borderColor) {
+      Color borderColor, Size screenSize) {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: borderColor, width: 2),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(screenSize.width * 0.03),
         color: Colors.white,
         boxShadow: [
           BoxShadow(
@@ -159,14 +172,18 @@ class RoleSelectionScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 55, color: iconColor),
-          SizedBox(height: 10),
+          Icon(
+            icon,
+            size: screenSize.width * 0.15,
+            color: iconColor,
+          ),
+          SizedBox(height: screenSize.height * 0.015),
           Text(
             role,
             style: TextStyle(
               color: iconColor,
               fontWeight: FontWeight.bold,
-              fontSize: 23,
+              fontSize: screenSize.width * 0.06,
             ),
           ),
         ],
