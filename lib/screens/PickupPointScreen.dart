@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tard/screens/UpcomingTripsScreen.dart';
 
 class PickupPointScreen extends StatelessWidget {
   const PickupPointScreen({super.key});
@@ -283,7 +284,11 @@ class _ShippingInfoBottomSheetState extends State<ShippingInfoBottomSheet> {
                         color: Colors.orange),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => UpcomingTripsScreen(),
+                      ));
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xff6B3C8A),
                       padding:
